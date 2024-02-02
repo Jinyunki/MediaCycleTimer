@@ -41,6 +41,14 @@ namespace MediaCycleTimer.ViewModel {
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MediaViewModel>();
+        }
+
+        public MediaViewModel MediaViewModel {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MediaViewModel>();
+            }
         }
 
         public MainViewModel Main

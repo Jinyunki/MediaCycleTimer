@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using MediaCycleTimer.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,6 +12,16 @@ using System.Windows.Input;
 namespace MediaCycleTimer.Model {
     public class MainModel : ViewModelBase {
         public ViewModelLocator _locator = new ViewModelLocator();
+        private ObservableCollection<SideTabButton> _sideTabs;
+        public ObservableCollection<SideTabButton> SideTabs {
+            get => _sideTabs;
+            set {
+                if (_sideTabs != value) {
+                    _sideTabs = value;
+                    RaisePropertyChanged(nameof(SideTabs));
+                }
+            }
+        }
         private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel {
             get {
@@ -25,7 +36,6 @@ namespace MediaCycleTimer.Model {
                 RaisePropertyChanged("CurrentViewModel");
             }
         }
-
 
         private WindowState _windowState;
         public WindowState WindowState {
