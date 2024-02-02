@@ -19,6 +19,20 @@ namespace MediaCycleTimer {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            WinBtn.Visibility = Visibility.Hidden;
         }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
+            if (e.LeftButton == MouseButtonState.Pressed && Keyboard.IsKeyDown(Key.LeftCtrl)) {
+                DragMove();
+            }
+        }
+        private void Grid_MouseEnter(object sender, MouseEventArgs e) {
+            WinBtn.Visibility = Visibility.Visible;
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e) {
+            WinBtn.Visibility = Visibility.Hidden;
+        }
+
     }
 }
