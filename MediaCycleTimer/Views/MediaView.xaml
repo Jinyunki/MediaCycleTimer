@@ -6,7 +6,90 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Background="{DynamicResource DarkNavyGray}"
     DataContext="{Binding MediaViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid Background="White" />
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Dictionary_UI.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="6*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Content="File Open"
+                    Background="Transparent"
+                    Foreground="Silver"
+                    Style="{DynamicResource SideTabButtonStyle}"/>
+                <TextBlock
+                    Grid.Column="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="25" />
+            </Grid>
+            <MediaElement
+                Grid.Row="1"
+                LoadedBehavior="Manual"
+                UnloadedBehavior="Manual" />
+            <Slider
+                Grid.Row="2"
+                Maximum="1"
+                Minimum="0"/>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Content="Stop" 
+                    Background="Transparent"
+                    Foreground="Silver"
+                    Style="{DynamicResource SideTabButtonStyle}"/>
+                <Button
+                    Grid.Column="1"
+                    Content="Play/Pause"
+                    Background="Transparent"
+                    Foreground="Silver"
+                    Style="{DynamicResource SideTabButtonStyle}"/>
+                <Button
+                    Grid.Column="2"
+                    Content="Add List"
+                    Background="Transparent"
+                    Foreground="Silver"
+                    Style="{DynamicResource SideTabButtonStyle}"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <ScrollViewer>
+                <ListView>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding}" Header="Time" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
 </UserControl>

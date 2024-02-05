@@ -4,9 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MediaCycleTimer"
-    xmlns:vm="clr-namespace:MediaCycleTimer.ViewModel"
-    xmlns:view="clr-namespace:MediaCycleTimer.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:MediaCycleTimer.Views"
+    xmlns:vm="clr-namespace:MediaCycleTimer.ViewModel"
     Title="MainWindow"
     Width="1800"
     Height="900"
@@ -22,11 +22,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Dictionary_UI.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
             <DataTemplate DataType="{x:Type vm:MediaViewModel}">
-                <view:MediaView/>
+                <view:MediaView />
             </DataTemplate>
-
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -109,17 +107,11 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="9*" />
             </Grid.ColumnDefinitions>
-            <ItemsControl Grid.Column="0" ItemsSource="{Binding SideTabs}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button
-                            Margin="0,5,0,5"
-                            Command="{Binding Command}"
-                            Content="{Binding ButtonText}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}" />
+            <view:SideTab Grid.Column="0" />
+            <ContentControl
+                Grid.Column="1"
+                Background="{DynamicResource DarkNavyGray}"
+                Content="{Binding CurrentViewModel, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
     </Grid>
 </Window>

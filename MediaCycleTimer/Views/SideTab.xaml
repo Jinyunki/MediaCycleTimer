@@ -1,0 +1,43 @@
+﻿<UserControl
+    x:Class="MediaCycleTimer.Views.SideTab"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MediaCycleTimer.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="860"
+    d:DesignWidth="180"
+    Background="{DynamicResource DarkNavyGray}"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Dictionary_UI.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Button
+            Command="{Binding BtnMedia}"
+            Foreground="Silver"
+            Width="120"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            Content="Main"
+            Style="{DynamicResource SideTabButtonStyle}" />
+    </Grid>
+</UserControl>

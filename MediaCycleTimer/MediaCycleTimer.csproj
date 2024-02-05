@@ -66,12 +66,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\MainModel.cs" />
-    <Compile Include="Model\SideTabButton.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MediaViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\MediaView.xaml.cs">
       <DependentUpon>MediaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SideTab.xaml.cs">
+      <DependentUpon>SideTab.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary_UI.xaml">
       <SubType>Designer</SubType>
@@ -90,6 +92,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\MediaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SideTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

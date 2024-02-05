@@ -12,16 +12,6 @@ using System.Windows.Input;
 namespace MediaCycleTimer.Model {
     public class MainModel : ViewModelBase {
         public ViewModelLocator _locator = new ViewModelLocator();
-        private ObservableCollection<SideTabButton> _sideTabs;
-        public ObservableCollection<SideTabButton> SideTabs {
-            get => _sideTabs;
-            set {
-                if (_sideTabs != value) {
-                    _sideTabs = value;
-                    RaisePropertyChanged(nameof(SideTabs));
-                }
-            }
-        }
         private ViewModelBase _currentViewModel;
         public ViewModelBase CurrentViewModel {
             get {
@@ -110,7 +100,13 @@ namespace MediaCycleTimer.Model {
         public ICommand BtnMinmize { get; set; }
         public ICommand BtnMaxsize { get; set; }
         public ICommand BtnClose { get; set; }
+        #endregion
 
+        #region SideTab Btn Command
+        public void BtnSideTabs() {
+            BtnMedia = new RelayCommand(()=> { CurrentViewModel = _locator.MediaViewModel; });
+        }
+        public ICommand BtnMedia { get; set; }
         #endregion
     }
 }
