@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
@@ -9,6 +10,46 @@ using System.Windows.Input;
 namespace MediaCycleTimer.Model {
     public class MediaModel : ViewModelBase {
         public ICommand BtnFileOpen { get; set; }
+        public ICommand BtnMediaPlayStop { get; set; }
+
+        private string _playTime;
+        public string PlayTime {
+            get { return _playTime; }
+            set {
+                if (_playTime !=value) {
+                    _playTime = value;
+                    RaisePropertyChanged(nameof(PlayTime));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private bool _isPlaying = false;
+        public bool IsPlaying {
+            get { return _isPlaying; }
+            set {
+                if (_isPlaying != value) {
+                    _isPlaying = value;
+                    RaisePropertyChanged(nameof(IsPlaying));
+                }
+            }
+        }
+
+        private double _mediaSliderValue;
+        public double MediaSliderValue {
+            get { return _mediaSliderValue; }
+            set {
+                if (_mediaSliderValue != value) {
+                    _mediaSliderValue = value;
+                    RaisePropertyChanged(nameof(MediaSliderValue));
+                }
+            }
+        }
 
         private string _selectedFilePath;
         public string SelectedFilePath {
