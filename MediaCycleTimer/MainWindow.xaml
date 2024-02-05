@@ -8,7 +8,7 @@
     xmlns:view="clr-namespace:MediaCycleTimer.Views"
     xmlns:vm="clr-namespace:MediaCycleTimer.ViewModel"
     Title="MainWindow"
-    Width="1800"
+    Width="1700"
     Height="900"
     AllowsTransparency="True"
     Background="Transparent"

@@ -108,5 +108,6 @@ namespace MediaCycleTimer.Model {
         }
         public ICommand BtnMedia { get; set; }
         #endregion
+        
     }
 }

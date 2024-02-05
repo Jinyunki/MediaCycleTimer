@@ -23,12 +23,12 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
                 <RowDefinition Height="8*" />
-                <RowDefinition Height="0.5*" />
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="85*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="8*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Margin="0,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="6*" />
@@ -36,25 +36,30 @@
                 </Grid.ColumnDefinitions>
                 <Button
                     Grid.Column="0"
-                    Content="File Open"
                     Background="Transparent"
+                    Command="{Binding BtnFileOpen}"
+                    Content="File Open"
                     Foreground="Silver"
-                    Style="{DynamicResource SideTabButtonStyle}"/>
+                    Style="{DynamicResource SideTabButtonStyle}" />
                 <TextBlock
                     Grid.Column="2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="25" />
             </Grid>
-            <MediaElement
-                Grid.Row="1"
-                LoadedBehavior="Manual"
-                UnloadedBehavior="Manual" />
+            <Grid Grid.Row="1">
+                <ContentControl
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Black"
+                    Content="{Binding VideoObject}" />
+            </Grid>
             <Slider
                 Grid.Row="2"
                 Maximum="1"
-                Minimum="0"/>
-            <Grid Grid.Row="3">
+                Minimum="0"
+                Style="{DynamicResource CustomSliderStyle}" />
+            <Grid Grid.Row="3" Margin="0,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -62,22 +67,22 @@
                 </Grid.ColumnDefinitions>
                 <Button
                     Grid.Column="0"
-                    Content="Stop" 
                     Background="Transparent"
+                    Content="Stop"
                     Foreground="Silver"
-                    Style="{DynamicResource SideTabButtonStyle}"/>
+                    Style="{DynamicResource SideTabButtonStyle}" />
                 <Button
                     Grid.Column="1"
-                    Content="Play/Pause"
                     Background="Transparent"
+                    Content="Play/Pause"
                     Foreground="Silver"
-                    Style="{DynamicResource SideTabButtonStyle}"/>
+                    Style="{DynamicResource SideTabButtonStyle}" />
                 <Button
                     Grid.Column="2"
-                    Content="Add List"
                     Background="Transparent"
+                    Content="Add List"
                     Foreground="Silver"
-                    Style="{DynamicResource SideTabButtonStyle}"/>
+                    Style="{DynamicResource SideTabButtonStyle}" />
             </Grid>
         </Grid>
         <Grid Grid.Column="1">
