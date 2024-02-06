@@ -18,15 +18,7 @@ namespace MediaCycleTimer.ViewModel {
         public MediaViewModel() {
             BtnEvents();
         }
-
-        private void GetMediaThreadChecker() {
-            mediaWorker = new BackgroundWorker {
-                WorkerSupportsCancellation = true
-            };
-            mediaWorker.DoWork += MediaWorker_DoWork;
-            mediaWorker.RunWorkerCompleted += MediaWorker_RunWorkerCompleted;
-            mediaWorker.RunWorkerAsync();
-        }
+        
         private DispatcherTimer timer;
         private void GetMediaThreadChecker2() {
             timer = new DispatcherTimer();
@@ -49,17 +41,6 @@ namespace MediaCycleTimer.ViewModel {
             }
         }
 
-
-        private void MediaWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            Console.WriteLine("Finish Completed");
-        }
-
-        private void MediaWorker_DoWork(object sender, DoWorkEventArgs e) {
-            while (!mediaWorker.CancellationPending) {
-                ;
-            }
-        }
-
         private void BtnEvents() {
             BtnFileOpen = new RelayCommand(FileOpenExcute);
             BtnMediaPlayStop = new RelayCommand(MediaPlayStop);
@@ -76,13 +57,17 @@ namespace MediaCycleTimer.ViewModel {
             if (IsPlaying) {
                 VideoObject.Pause();
                 IsPlaying = false;
+                timer.Stop();
             } else {
                 VideoObject.Play();
                 IsPlaying = true;
+                timer.Start();
             }
 
         }
-
+        public void UpdateMediaCurrentTime(TimeSpan currentTime) {
+            MediaSliderValue = currentTime.TotalSeconds;
+        }
         //GetMediaThreadChecker();
         private void FileOpenExcute() {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog {
@@ -97,6 +82,11 @@ namespace MediaCycleTimer.ViewModel {
                 VideoObject.LoadedBehavior = MediaState.Manual;
                 VideoObject.UnloadedBehavior = MediaState.Manual;
                 VideoObject.Stretch = Stretch.Uniform;
+                VideoObject.MediaOpened += (sender, e) => {
+                    CompositionTarget.Rendering += (s, args) => {
+                        UpdateMediaCurrentTime(VideoObject.Position);
+                    };
+                };
                 
                 // 재생 시작
                 VideoObject.Play();

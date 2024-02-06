@@ -42,12 +42,12 @@
                     Foreground="Silver"
                     Style="{DynamicResource SideTabButtonStyle}" />
                 <TextBlock
-                    Foreground="Silver"
-                    Text="{Binding PlayTime}"
                     Grid.Column="2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    FontSize="20" />
+                    FontSize="20"
+                    Foreground="Silver"
+                    Text="{Binding PlayTime}" />
             </Grid>
             <Grid Grid.Row="1">
                 <ContentControl
@@ -58,10 +58,10 @@
             </Grid>
             <Slider
                 Grid.Row="2"
-                Maximum="1"
-                Minimum="0"
-                Value="{Binding MediaSliderValue}"
-                Style="{DynamicResource CustomSliderStyle}" />
+                Maximum="{Binding MediaSliderMax}"
+                Minimum="{Binding MediaSliderMin}"
+                Style="{DynamicResource MediaSliderStyle}"
+                Value="{Binding MediaSliderValue}" />
             <Grid Grid.Row="3" Margin="0,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -77,8 +77,8 @@
                 <Button
                     Grid.Column="1"
                     Background="Transparent"
-                    Content="▶ / ∥"
                     Command="{Binding BtnMediaPlayStop}"
+                    Content="▶ / ∥"
                     Foreground="Silver"
                     Style="{DynamicResource SideTabButtonStyle}" />
                 <Button

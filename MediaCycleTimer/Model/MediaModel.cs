@@ -23,10 +23,26 @@ namespace MediaCycleTimer.Model {
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private int _mediaSliderMin = 0;
+        public int MediaSliderMin {
+            get { return _mediaSliderMin; }
+            set {
+                if (_mediaSliderMin != value) {
+                    _mediaSliderMin = value;
+                    RaisePropertyChanged(nameof(MediaSliderMin));
+                }
+            }
+        }
 
-        protected virtual void OnPropertyChanged(string propertyName) {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        private int _mediaSliderMax = 100;
+        public int MediaSliderMax {
+            get { return _mediaSliderMax; }
+            set {
+                if (_mediaSliderMax != value) {
+                    _mediaSliderMax = value;
+                    RaisePropertyChanged(nameof(MediaSliderMax));
+                }
+            }
         }
 
         private bool _isPlaying = false;
