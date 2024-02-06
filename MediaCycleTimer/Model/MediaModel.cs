@@ -17,7 +17,7 @@ namespace MediaCycleTimer.Model {
             get { return _playTime; }
             set {
                 if (_playTime !=value) {
-                    _playTime = value;
+                    _playTime = value + " / Sec ";
                     RaisePropertyChanged(nameof(PlayTime));
                 }
             }

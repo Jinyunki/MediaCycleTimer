@@ -31,7 +31,9 @@ namespace MediaCycleTimer.ViewModel {
                 // 현재 시간
                 TimeSpan currentPosition = VideoObject.Position;
                 string formattedCurrentPosition = currentPosition.ToString(@"hh\:mm\:ss\.fff");
-                PlayTime = formattedCurrentPosition;
+                string totalSecond = Math.Round(currentPosition.TotalSeconds, 3).ToString();
+                PlayTime = totalSecond;
+                //PlayTime = formattedCurrentPosition;
                 Console.WriteLine("Current Position: " + formattedCurrentPosition);
 
                 // 총 시간

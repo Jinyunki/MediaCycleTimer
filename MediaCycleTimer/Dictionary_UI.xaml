@@ -567,7 +567,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <ControlTemplate x:Key="MediaSliderControlTemplate" TargetType="{x:Type Slider}">
         <Border Background="Transparent" SnapsToDevicePixels="True">
             <Grid>

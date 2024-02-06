@@ -3,6 +3,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MediaCycleTimer.Views {
     /// <summary>
@@ -12,7 +13,9 @@ namespace MediaCycleTimer.Views {
         public MediaView() {
             InitializeComponent();
         }
-        
+        private void PosListBox_MouseDown(object sender, MouseButtonEventArgs e) {
+            PosListBox.SelectedItem = null;
+        }
     }
 
 }
