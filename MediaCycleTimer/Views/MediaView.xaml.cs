@@ -16,6 +16,7 @@ namespace MediaCycleTimer.Views {
         private void PosListBox_MouseDown(object sender, MouseButtonEventArgs e) {
             PosListBox.SelectedItem = null;
         }
+        
     }
 
 }

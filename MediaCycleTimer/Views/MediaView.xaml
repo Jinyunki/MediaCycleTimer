@@ -4,8 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    xmlns:utiles="clr-namespace:MediaCycleTimer.Utiles"
+    d:DesignHeight="860"
+    d:DesignWidth="1500"
     Background="{DynamicResource DarkNavyGray}"
     DataContext="{Binding MediaViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
@@ -17,10 +18,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*" />
-            <ColumnDefinition Width="2*" />
-        </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*" />
@@ -31,7 +28,9 @@
             <Grid Grid.Row="0" Margin="0,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="6*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
                 <Button
@@ -41,25 +40,203 @@
                     Content="File Open"
                     Foreground="Silver"
                     Style="{DynamicResource SideTabButtonStyle}" />
-                <TextBlock
-                    Grid.Column="2"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    FontSize="20"
-                    Foreground="Silver"
-                    Text="{Binding PlayTime}" />
+                <Grid Grid.Column="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Foreground="Silver"
+                        Text="PlaySpeed : " />
+
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Foreground="Silver"
+                        Text="{Binding SpeedRatio}" />
+
+                    <Button
+                        Grid.Column="2"
+                        Width="35"
+                        Height="35"
+                        Background="DarkBlue"
+                        Content="─"
+                        Foreground="White"
+                        Command="{Binding BtnMoveSpeedDown}"
+                        Style="{DynamicResource RoundedButtonStyle}" />
+                    <Button
+                        Grid.Column="3"
+                        Width="35"
+                        Height="35"
+                        Background="DarkRed"
+                        Content="┼"
+                        Foreground="White"
+                        Command="{Binding BtnMoveSpeedUp}"
+                        Style="{DynamicResource RoundedButtonStyle}" />
+                </Grid>
+                <Grid Grid.Column="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Foreground="Silver"
+                        Text="Time : " />
+                    <TextBlock
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Foreground="Silver"
+                        Text="{Binding PlayTime}" />
+                    <TextBlock
+                        Grid.Column="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Foreground="Silver"
+                        Text="{Binding TotalPlayTime}" />
+
+                </Grid>
+
             </Grid>
-            <Border
-                Grid.Row="1"
-                BorderBrush="Silver"
-                BorderThickness="1"
-                CornerRadius="5">
-                <ContentControl
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Background="Black"
-                    Content="{Binding VideoObject}" />
-            </Border>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="9.5*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Foreground="Silver"
+                        Text="{Binding SelectedFilePath}" />
+                    <Border
+                        Grid.Row="1"
+                        BorderBrush="Silver"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <MediaElement
+                            Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            utiles:MediaElementHelper.SpeedRatio="{Binding SpeedRatio}"
+                            LoadedBehavior="{Binding LoadedBehavior}"
+                            Source="{Binding SelectedFilePath}"
+                            Stretch="Uniform"
+                            UnloadedBehavior="{Binding UnloadedBehavior}" />
+
+
+                    </Border>
+                </Grid>
+
+                <!--  List  -->
+                <Grid Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*" />
+                            <RowDefinition Height="9.5*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="10"
+                                FontWeight="Bold"
+                                Foreground="{DynamicResource FontColor}"
+                                Text="Tec&#10;Num"
+                                TextAlignment="Left" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="10"
+                                FontWeight="Bold"
+                                Foreground="{DynamicResource FontColor}"
+                                Text="Tec&#10;Time"
+                                TextAlignment="Left" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="10"
+                                FontWeight="Bold"
+                                Foreground="{DynamicResource FontColor}"
+                                Text="Media&#10;Time"
+                                TextAlignment="Left" />
+
+                        </Grid>
+
+                        <ListBox
+                            x:Name="PosListBox"
+                            Grid.Row="1"
+                            HorizontalContentAlignment="Stretch"
+                            Background="Transparent"
+                            FontSize="12"
+                            Foreground="{DynamicResource FontColor}"
+                            ItemsSource="{Binding SaveDataList}"
+                            MouseDown="PosListBox_MouseDown"
+                            SelectedItem="{Binding SelctTimerItem}">
+                            <!--  우측의 명령어가 리스트의 가로 비율을 균일하게 배분  -->
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Center"
+                                            Text="{Binding Title}" />
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            Text="{Binding TecTime}" />
+
+                                        <TextBlock
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            Text="{Binding MediaTime}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+            </Grid>
+
             <Slider
                 Grid.Row="2"
                 Maximum="{Binding MediaSliderMax}"
@@ -88,105 +265,11 @@
                 <Button
                     Grid.Column="2"
                     Background="Transparent"
+                    Command="{Binding AddCycleTimeList}"
                     Content="Add List"
                     Foreground="Silver"
                     Style="{DynamicResource SideTabButtonStyle}" />
             </Grid>
-        </Grid>
-        <Grid Grid.Column="1">
-            <Border
-                BorderBrush="Silver"
-                BorderThickness="1"
-                CornerRadius="5">
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="9*" />
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="1" Background="Transparent">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="7"
-                            FontWeight="Bold"
-                            Foreground="{DynamicResource FontColor}"
-                            Text="Media&#10;Time"
-                            TextAlignment="Right" />
-
-                        <TextBlock
-                            Grid.Column="1"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="7"
-                            FontWeight="Bold"
-                            Foreground="{DynamicResource FontColor}"
-                            Text="Cycle&#10;Time"
-                            TextAlignment="Right" />
-
-                        <TextBlock
-                            Grid.Column="2"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="7"
-                            FontWeight="Bold"
-                            Foreground="{DynamicResource FontColor}"
-                            Text="Tec&#10;Name"
-                            TextAlignment="Right" />
-
-                    </Grid>
-
-                    <ListBox
-                        x:Name="PosListBox"
-                        Grid.Row="2"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        FontSize="9"
-                        Foreground="{DynamicResource FontColor}"
-                        ItemsSource="{Binding TimerList}"
-                        MouseDown="PosListBox_MouseDown"
-                        SelectedItem="{Binding SelctTimerItem}">
-                        <!--  우측의 명령어가 리스트의 가로 비율을 균일하게 배분  -->
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="0.7*" />
-                                        <ColumnDefinition Width="0.7*" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock
-                                        Grid.Column="0"
-                                        HorizontalAlignment="Right"
-                                        Text="{Binding MediaTime}" />
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        HorizontalAlignment="Right"
-                                        Text="{Binding CycleTime}" />
-                                    <TextBlock
-                                        Grid.Column="2"
-                                        HorizontalAlignment="Right"
-                                        Text="{Binding TecName}" />
-
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-
-            </Border>
         </Grid>
     </Grid>
 </UserControl>
