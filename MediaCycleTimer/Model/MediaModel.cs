@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -16,8 +17,7 @@ namespace MediaCycleTimer.Model {
         private string _totalPlayTime;
         private string _mediaTime;
         private double _mediaSliderValue;
-        private int _mediaSliderMin = 0;
-        private int _mediaSliderMax = 100;
+        private double _mediaSliderMax = 100;
         private bool _isPlaying = false;
         private string _selectedFilePath;
         private double _speedRatio = 3.0;
@@ -25,7 +25,18 @@ namespace MediaCycleTimer.Model {
         private MediaState _loadedBehavior = MediaState.Manual;
         private MediaState _unloadedBehavior = MediaState.Manual;
         private ObservableCollection<SaveModel> _saveDataList = new ObservableCollection<SaveModel>();
+        public DateTime Delay(int MS) {
 
+            DateTime thisMoment = DateTime.Now;
+            TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);
+            DateTime afterMoment = thisMoment.Add(duration);
+
+            while (afterMoment >= thisMoment) {
+                Application.Current?.Dispatcher.Invoke(DispatcherPriority.Background, new Action(delegate { }));
+                thisMoment = DateTime.Now;
+            }
+            return DateTime.Now;
+        }
         public DispatcherTimer DispatcherMedia { get; set; }
         public ICommand BtnFileOpen { get; set; }
         public ICommand BtnMediaPlayStop { get; set; }
@@ -33,7 +44,7 @@ namespace MediaCycleTimer.Model {
         public ICommand BtnMoveSpeedDown { get; set; }
         public ICommand BtnMoveSpeedUp { get; set; }
         public double InputTecTime { get; set; }
-        
+        public TimeSpan PausedPosition { get; set; }// 일시정지된 위치를 저장할 변수 추가
         public ObservableCollection<SaveModel> SaveDataList {
             get { return _saveDataList; }
             set {
@@ -70,18 +81,9 @@ namespace MediaCycleTimer.Model {
                 }
             }
         }
+        
 
-        public int MediaSliderMin {
-            get { return _mediaSliderMin; }
-            set {
-                if (_mediaSliderMin != value) {
-                    _mediaSliderMin = value;
-                    RaisePropertyChanged(nameof(MediaSliderMin));
-                }
-            }
-        }
-
-        public int MediaSliderMax {
+        public double MediaSliderMax {
             get { return _mediaSliderMax; }
             set {
                 if (_mediaSliderMax != value) {

@@ -68,18 +68,18 @@
                         Width="35"
                         Height="35"
                         Background="DarkBlue"
+                        Command="{Binding BtnMoveSpeedDown}"
                         Content="─"
                         Foreground="White"
-                        Command="{Binding BtnMoveSpeedDown}"
                         Style="{DynamicResource RoundedButtonStyle}" />
                     <Button
                         Grid.Column="3"
                         Width="35"
                         Height="35"
                         Background="DarkRed"
+                        Command="{Binding BtnMoveSpeedUp}"
                         Content="┼"
                         Foreground="White"
-                        Command="{Binding BtnMoveSpeedUp}"
                         Style="{DynamicResource RoundedButtonStyle}" />
                 </Grid>
                 <Grid Grid.Column="4">
@@ -144,9 +144,7 @@
                             LoadedBehavior="{Binding LoadedBehavior}"
                             Source="{Binding SelectedFilePath}"
                             Stretch="Uniform"
-                            UnloadedBehavior="{Binding UnloadedBehavior}" />
-
-
+                            UnloadedBehavior="Stop" />
                     </Border>
                 </Grid>
 
@@ -240,7 +238,7 @@
             <Slider
                 Grid.Row="2"
                 Maximum="{Binding MediaSliderMax}"
-                Minimum="{Binding MediaSliderMin}"
+                Minimum="0"
                 Style="{DynamicResource MediaSliderStyle}"
                 Value="{Binding MediaSliderValue}" />
             <Grid Grid.Row="3" Margin="0,5">

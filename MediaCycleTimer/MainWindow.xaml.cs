@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaCycleTimer.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,6 @@ namespace MediaCycleTimer {
         private void Grid_MouseLeave(object sender, MouseEventArgs e) {
             WinBtn.Visibility = Visibility.Hidden;
         }
-
+        
     }
 }
