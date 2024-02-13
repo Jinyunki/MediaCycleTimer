@@ -39,5 +39,16 @@
             Content="Main"
             Foreground="Silver"
             Style="{DynamicResource SideTabButtonStyle}" />
+        <Button
+            Grid.Row="7"
+            Width="120"
+            Height="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            Command="{Binding CaptureScreenCommand}"
+            Content="View Capture"
+            Foreground="Silver"
+            Style="{DynamicResource SideTabButtonStyle}" />
     </Grid>
 </UserControl>

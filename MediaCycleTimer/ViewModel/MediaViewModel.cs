@@ -1,17 +1,8 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using MediaCycleTimer.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace MediaCycleTimer.ViewModel {
     public class MediaViewModel : MediaModel {
@@ -26,7 +17,6 @@ namespace MediaCycleTimer.ViewModel {
             BtnMoveSpeedUp = new RelayCommand(() => { SpeedRatio += 0.5; });
             BtnMoveSpeedDown = new RelayCommand(() => { SpeedRatio -= 0.5; });
         }
-        
         private void ExcuteAddCycleTimeList() {
             if (SaveDataList.Count < 1) {
                 InputTecTime = double.Parse(PlayTime);

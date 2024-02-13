@@ -77,10 +77,11 @@
                         Width="35"
                         Height="35"
                         Background="DarkRed"
-                        Command="{Binding BtnMoveSpeedUp}"
                         Content="┼"
+                        Command="{Binding BtnMoveSpeedUp}"
                         Foreground="White"
                         Style="{DynamicResource RoundedButtonStyle}" />
+                    
                 </Grid>
                 <Grid Grid.Column="4">
                     <Grid.ColumnDefinitions>
