@@ -44,6 +44,7 @@ namespace MediaCycleTimer.Model {
         public ICommand AddCycleTimeList { get; set; }
         public ICommand BtnMoveSpeedDown { get; set; }
         public ICommand BtnMoveSpeedUp { get; set; }
+        public ICommand BtnMediaStop { get; set; }
         public double InputTecTime { get; set; }
         public TimeSpan PausedPosition { get; set; }// 일시정지된 위치를 저장할 변수 추가
         public ObservableCollection<SaveModel> SaveDataList {

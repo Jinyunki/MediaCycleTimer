@@ -253,6 +253,7 @@
                     Background="Transparent"
                     Content="Stop"
                     Foreground="Silver"
+                    Command="{Binding BtnMediaStop}"
                     Style="{DynamicResource SideTabButtonStyle}" />
                 <Button
                     Grid.Column="1"
