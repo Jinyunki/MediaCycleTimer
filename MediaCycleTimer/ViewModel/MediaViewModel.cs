@@ -20,17 +20,13 @@ namespace MediaCycleTimer.ViewModel {
         }
 
         private void ExcuteMediaStop() {
-            // 미디어가 재생 중인 경우에만 실행
-            if (IsPlaying) {
-                // 재생 중이라면 재생을 중지하고 초기화
-                IsPlaying = false;
-                LoadedBehavior = MediaState.Close;
-                MediaPlayerObject.Stop();
-                MediaPlayerObject.Close(); // 미디어 플레이어를 닫아 초기화합니다.
-                MediaTime = "00:00:00.00"; // 미디어 시간을 초기화합니다.
-                PlayTime = "0.00"; // 재생 시간을 초기화합니다.
-                MediaSliderValue = 0; // 미디어 슬라이더 값을 초기화합니다.
-            }
+            IsPlaying = false;
+            LoadedBehavior = MediaState.Close;
+            MediaPlayerObject.Stop();
+            MediaPlayerObject.Close(); // 미디어 플레이어를 닫아 초기화합니다.
+            MediaTime = "00:00:00.00"; // 미디어 시간을 초기화합니다.
+            PlayTime = "0.00"; // 재생 시간을 초기화합니다.
+            MediaSliderValue = 0; // 미디어 슬라이더 값을 초기화합니다.
         }
 
         private void ExcuteAddCycleTimeList() {
