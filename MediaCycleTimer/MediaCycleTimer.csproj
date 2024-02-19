@@ -72,7 +72,9 @@
     <Compile Include="Model\MainModel.cs" />
     <Compile Include="Model\MediaModel.cs" />
     <Compile Include="Model\SaveModel.cs" />
+    <Compile Include="Utiles\Command.cs" />
     <Compile Include="Utiles\MediaElementHelper.cs" />
+    <Compile Include="Utiles\ViewCapture.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MediaViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

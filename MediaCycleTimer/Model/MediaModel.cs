@@ -38,7 +38,6 @@ namespace MediaCycleTimer.Model {
             }
             return DateTime.Now;
         }
-        public DispatcherTimer DispatcherMedia { get; set; }
         public ICommand BtnFileOpen { get; set; }
         public ICommand BtnMediaPlayStop { get; set; }
         public ICommand AddCycleTimeList { get; set; }
